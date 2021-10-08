@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-                        {% load static %}
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +24,7 @@
 {#                {% load static %}#}
 {#                <img src="{% static "media/" %}{{ad.image}}" class="card-img-top" alt="Photo">#}
 {#                <img src="{%  static 'ad.product_pic.url' %}" class="card-img-top" alt="Photo">#}
-                <img src="{{ ad.product_pic.url }}" class="card-img-top" alt="Photo">
+                <img src="media/Images/2.png" class="card-img-top" alt="Photo">
                 <div class="card-body">
                     <h5 class="card-title">{{ad.first_name}}&nbsp;{{ ad.last_name }}</h5>
                     <p class="card-text">{{ad.product_details}}</p>

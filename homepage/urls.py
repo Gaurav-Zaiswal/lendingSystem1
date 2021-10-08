@@ -10,6 +10,9 @@ urlpatterns = [
     path('', ItemListView.as_view(), name='index'),
     # path('', views.index, name='index'),
     path('index', HomePageView.as_view(), name="Home"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns+= staticfiles_urlpatterns()
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

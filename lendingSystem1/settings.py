@@ -14,8 +14,17 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent    # >>>>>>>>>>>>>>>>>>>>>> old base dir configs
 
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> new base dir configs starts
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> new base dir configs endss
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -61,8 +70,8 @@ ROOT_URLCONF = 'lendingSystem1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        # 'DIRS': [BASE_DIR, 'templates'],  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>> old template configs
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # >>>>>>>>>>>>>>>>>>>>>>> new template configs
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,12 +90,25 @@ WSGI_APPLICATION = 'lendingSystem1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# >>>>>>>>> old database conf starts
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / ''
+#         'db.sqlite3',
+#     }
+# }
+# >>>>>>>>> old database conf ends
+
+
+#>>>>>>>>>>>>> new database confis starts
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+#>>>>>>>>>>>>> new database confis ends
 
 
 # Password validation
@@ -129,17 +151,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join("static/", 'media/')
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join("static/", 'media/')
-
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 LOGOUT_REDIRECT_URL= 'home'
 
 LOGIN_REDIRECT_URL="home"
